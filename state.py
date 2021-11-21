@@ -12,11 +12,13 @@ class RequestState(object):
         self.request_id = datagram.request_id
         self.queried_peer = datagram.queried_peer
 
-        self.Query_Datagram_Source_addr_List = []
+        self.Query_Datagram_Source_Peer_List = []
         self.Evaluation_Datagram_List = []
+        self.Query_Datagram_Destination_Peer_List = []
 
 
 class QueryDatagramList(object):
+    #暂未用到这个类
     def __init__(self, arg):
         self.arg = arg
         self.initint = 0
@@ -31,16 +33,21 @@ class QueryDatagram(object):
         self.queried_peer = queried_peer
         self.request_id = request_id
         self.send_peer_id = send_peer_id
+    def setsendpeerid(self, peer_id):
+        self.send_peer_id = peer_id
 
     pass
 
 
 class EvaluationDatagram(object):
-    def __init__(self, queried_peer, peer_which_initiated_query, request_id, send_peer_id):
+    def __init__(self, queried_peer, request_id, send_peer_id, peer_which_initiated_query):
         self.queried_peer = queried_peer
         self.peer_which_initiated_query = peer_which_initiated_query
         self.request_id = request_id
         self.send_peer_id = send_peer_id
+
+    def setsendpeerid(self, peer_id):
+        self.send_peer_id = peer_id
 
 
 class CredDatagram(object):
